@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Почему люди становятся жертвами мошенничества</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ======= Графика (чёрно-белые «фото» из SVG) и иконка-стрелка ======= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dcdcdc"/><stop offset="1" stop-color="#6e6e6e"/></linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9d9d9"/><stop offset=".55" stop-color="#a9a9a9"/><stop offset="1" stop-color="#4a4a4a"/></linearGradient>
+    <linearGradient id="pet" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#8d8d8d"/></linearGradient>
+
+    <symbol id="arrow" viewBox="0 0 60 60"><path d="M8 52 L52 8 M16 8 H52 V44"/></symbol>
+
+    <symbol id="mnt" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid slice">
+      <rect width="1200" height="300" fill="url(#sky)"/>
+      <polygon fill="#9a9a9a" points="0,300 0,170 90,120 170,160 260,70 340,140 430,95 540,175 640,60 740,150 830,110 930,180 1030,90 1120,150 1200,120 1200,300"/>
+      <polygon fill="#f2f2f2" points="260,70 300,112 276,106 262,124 240,108"/>
+      <polygon fill="#f2f2f2" points="640,60 684,114 660,108 644,130 618,110"/>
+      <polygon fill="#f2f2f2" points="1030,90 1066,128 1046,122 1032,140 1010,124"/>
+      <polygon fill="#3d3d3d" points="0,300 0,210 120,150 210,200 330,130 450,210 570,150 700,230 820,160 950,225 1080,170 1200,215 1200,300"/>
+      <polygon fill="#dedede" points="330,130 366,162 346,158 332,172 312,160"/>
+      <polygon fill="#dedede" points="820,160 852,190 836,186 822,198 806,188"/>
+      <polygon fill="#151515" points="0,300 0,262 150,226 300,266 480,236 650,276 820,240 1000,270 1200,246 1200,300"/>
+    </symbol>
+
+    <symbol id="ridge" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
+      <rect width="400" height="800" fill="url(#sky)"/>
+      <polygon fill="#a3a3a3" points="0,800 0,330 70,260 130,320 210,170 280,290 340,230 400,300 400,800"/>
+      <polygon fill="#f4f4f4" points="210,170 244,232 224,226 212,248 190,228"/>
+      <polygon fill="#555" points="0,800 0,470 90,400 170,470 260,360 350,460 400,420 400,800"/>
+      <polygon fill="#e6e6e6" points="260,360 290,410 272,404 260,424 244,408"/>
+      <polygon fill="#1a1a1a" points="0,800 0,620 110,570 210,640 320,590 400,630 400,800"/>
+    </symbol>
+
+    <symbol id="coast" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice">
+      <rect width="1200" height="420" fill="#e9e9e9"/>
+      <rect y="0" width="1200" height="200" fill="url(#sea)" opacity=".55"/>
+      <rect y="150" width="1200" height="270" fill="url(#sea)"/>
+      <polygon fill="#2b2b2b" points="0,420 0,250 110,244 250,262 370,292 520,300 610,322 780,332 920,350 1200,356 1200,420"/>
+      <polygon fill="#555" points="0,250 110,244 250,262 370,292 300,282 200,266 90,256 0,262"/>
+      <polygon fill="#111" points="0,420 0,330 160,322 340,360 560,372 760,392 980,398 1200,404 1200,420"/>
+      <ellipse cx="880" cy="300" rx="180" ry="6" fill="#fff" opacity=".35"/>
+      <ellipse cx="1000" cy="330" rx="120" ry="4" fill="#fff" opacity=".28"/>
+    </symbol>
+
+    <symbol id="spiral" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+      <rect width="400" height="400" fill="#0f0f0f"/>
+      <g class="spin" fill="none" stroke="#f4f4f4" stroke-width="15">
+        <circle cx="200" cy="200" r="178" stroke-dasharray="120 38"/>
+        <circle cx="200" cy="200" r="150" stroke-dasharray="90 30" stroke="#cfcfcf"/>
+        <circle cx="200" cy="200" r="122" stroke-dasharray="70 26" stroke="#9f9f9f"/>
+      </g>
+      <g class="spin rev" fill="none" stroke-width="13">
+        <circle cx="200" cy="200" r="96" stroke="#e8e8e8" stroke-dasharray="52 20"/>
+        <circle cx="200" cy="200" r="72" stroke="#777" stroke-dasharray="38 14"/>
+      </g>
+      <circle cx="200" cy="200" r="48" fill="#fafafa"/>
+    </symbol>
+
+    <symbol id="petal" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+      <rect width="400" height="400" fill="#0d0d0d"/>
+      <g class="spin" style="animation-duration:90s">
+        <g fill="url(#pet)" opacity=".92">
+          <ellipse cx="200" cy="108" rx="34" ry="96"/>
+          <ellipse cx="200" cy="108" rx="34" ry="96" transform="rotate(60 200 200)"/>
+          <ellipse cx="200" cy="108" rx="34" ry="96" transform="rotate(120 200 200)"/>
+          <ellipse cx="200" cy="108" rx="34" ry="96" transform="rotate(180 200 200)"/>
+          <ellipse cx="200" cy="108" rx="34" ry="96" transform="rotate(240 200 200)"/>
+          <ellipse cx="200" cy="108" rx="34" ry="96" transform="rotate(300 200 200)"/>
+        </g>
+        <g fill="#3a3a3a" opacity=".85">
+          <ellipse cx="200" cy="130" rx="14" ry="70" transform="rotate(30 200 200)"/>
+          <ellipse cx="200" cy="130" rx="14" ry="70" transform="rotate(90 200 200)"/>
+          <ellipse cx="200" cy="130" rx="14" ry="70" transform="rotate(150 200 200)"/>
+          <ellipse cx="200" cy="130" rx="14" ry="70" transform="rotate(210 200 200)"/>
+          <ellipse cx="200" cy="130" rx="14" ry="70" transform="rotate(270 200 200)"/>
+          <ellipse cx="200" cy="130" rx="14" ry="70" transform="rotate(330 200 200)"/>
+        </g>
+      </g>
+      <circle cx="200" cy="200" r="16" fill="#111" stroke="#fff" stroke-width="2"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="progress"><i id="bar"></i></div>
+
+<main class="stage" id="stage">
+
+<!-- ============ 1. ВОПРОС (титул) ============ -->
+<section class="slide s1" data-name="Титульный слайд">
+  <div class="panel">
+    <span class="ring" style="width:620px;height:620px;left:380px;top:-120px"></span>
+    <span class="ring" style="width:420px;height:420px;left:480px;top:-20px;animation-delay:-3s"></span>
+
+    <h1 class="abs h rv giant" data-fit="800"><span>Вопрос</span></h1>
+    <p class="q fade" style="--d:1.0s">Почему люди становятся жертвами мошенничества, несмотря на существующие способы его распознавания и предупреждения?</p>
+
+    <i class="line" style="--d:1.0s"></i>
+    <div class="date fade" style="--d:1.3s">Октябрь 2026</div>
+    <svg class="arrow" style="--d:1.4s"><use href="#arrow"/></svg>
+
+    <ul class="who">
+      <li class="fade" style="--d:1.4s"><b>Лектор</b>Доктор экономических наук, профессор Абдыров Т.Ш.</li>
+      <li class="fade" style="--d:1.6s"><b>Практика</b>Старший преподаватель Кремнев Леонтий Александрович</li>
+      <li class="fade" style="--d:1.8s"><b>Группа 2-26</b>Абдывалиева Асема, Алымбекова Бегимай</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 2. АКТУАЛЬНОСТЬ ============ -->
+<section class="slide cream s2" data-name="Актуальность">
+  <h2 class="abs h rv" data-fit="1260"><span>Актуальность</span></h2>
+  <i class="line" style="--d:1.0s"></i>
+  <div class="sub fade" style="--d:1.1s">Почему мы выбрали эту тему</div>
+
+  <article class="card c1 fade" style="--d:1.4s">
+    <div class="n">01</div>
+    <svg class="arrow"><use href="#arrow"/></svg>
+    <h3>Касается каждого</h3>
+    <p>Мы выбрали эту тему, потому что мошенничество затрагивает любого из нас: в Кыргызстане на него приходится почти 32% всех зарегистрированных преступлений.</p>
+  </article>
+  <article class="card c2 fade" style="--d:1.7s">
+    <div class="n">02</div>
+    <svg class="arrow"><use href="#arrow"/></svg>
+    <h3>Потери огромны</h3>
+    <p>Нас удивило, что при обилии предупреждений потери остаются колоссальными: за 2025 год жители страны потеряли 826 млн сомов.</p>
+  </article>
+  <article class="card c3 fade" style="--d:2.0s">
+    <div class="n">03</div>
+    <svg class="arrow"><use href="#arrow"/></svg>
+    <h3>Нужно понять «почему»</h3>
+    <p>Мы считаем, что знать о схемах мало: важно разобраться, почему даже осторожные люди попадаются, и как этого избежать.</p>
+  </article>
+</section>
+
+<!-- ============ 3. ПРИЧИНЫ ============ -->
+<section class="slide ink s3" data-name="10 причин">
+  <p class="intro fade" style="--d:.9s">Проблема возникает из-за десяти причин.<br>Три главные мы разберём с цифрами, графиками и таблицами, остальные семь опишем с фактами. Причины выстроены по важности.</p>
+  <p class="legend fade" style="--d:1.2s"><i style="background:var(--red)"></i>3 главные причины — с анализом<br><i style="background:rgba(255,244,220,.6)"></i>7 остальных причин — с описанием</p>
+
+  <ol class="causes">
+    <li class="main fade" style="--d:1.0s"><b>01</b>Мошенники приходят туда, где мы доверяем: соцсети, сайты, звонки</li>
+    <li class="main fade" style="--d:1.1s"><b>02</b>Жажда быстрого дохода: инвестиционные схемы</li>
+    <li class="main fade" style="--d:1.2s"><b>03</b>Осведомлённость отстаёт от новых схем</li>
+    <li class="fade" style="--d:1.3s"><b>04</b>Эмоциональное давление: срочность и страх</li>
+    <li class="fade" style="--d:1.4s"><b>05</b>Доверие к «авторитету»: банк, полиция, госорган</li>
+    <li class="fade" style="--d:1.5s"><b>06</b>Иллюзия неуязвимости: «со мной такого не будет»</li>
+    <li class="fade" style="--d:1.6s"><b>07</b>Утечки персональных данных</li>
+    <li class="fade" style="--d:1.7s"><b>08</b>ИИ, дипфейки и поддельные сайты</li>
+    <li class="fade" style="--d:1.8s"><b>09</b>Одиночество и жажда внимания</li>
+    <li class="fade" style="--d:1.9s"><b>10</b>Деньги почти не возвращают, схемы международные</li>
+  </ol>
+
+  <div class="strip">
+    <div class="artbox wipe gray" style="--d:.8s"><svg style="--k:.6"><use href="#mnt" width="100%" height="100%"/></svg></div>
+  </div>
+  <h2 class="abs h rv" data-fit="1100"><span>Причины</span></h2>
+  <svg class="arrow" style="--d:1.6s"><use href="#arrow"/></svg>
+</section>
+
+<!-- ============ 4. АНАЛИЗ (разделитель) ============ -->
+<section class="slide s4" data-name="Анализ">
+  <div class="panel">
+    <svg class="arrow" style="--d:1.2s"><use href="#arrow"/></svg>
+    <div class="artbox wipe up gray" style="--d:.7s"><svg style="--k:-.8"><use href="#petal" width="100%" height="100%"/></svg></div>
+    <h2 class="abs h rv" data-fit="650"><span>Анализ</span></h2>
+    <p class="txt fade" style="--d:1.2s"><b>Три главные причины</b> проверяем фактами: графики, диаграммы и таблицы превращают гипотезу в аргументированный вывод. Остальные семь причин описаны на отдельных слайдах.</p>
+  </div>
+</section>
+
+<!-- ============ 5. АНАЛИЗ: причина 1 (гистограмма + простая таблица) ============ -->
+<section class="slide an a1" data-name="Анализ: причина 1">
+  <div class="bar-top"></div>
+  <div class="tag fade" style="--d:.7s">ПРИЧИНА 1 <span>из 10</span></div>
+  <h2 class="h2 rv" style="--d:.55s"><span>Мошенники приходят туда, где мы доверяем</span></h2>
+  <div class="hyp fade" style="--d:1.0s"><b>Гипотеза</b>Схемы переехали в соцсети: там мы расслаблены, общаемся со «своими» и меньше проверяем.</div>
+
+  <div class="card fade" style="--d:.9s">
+    <div class="ct">Динамика: потери от мошенничества, начавшегося в соцсетях (США)</div>
+    <div class="unit">$ млрд</div>
+    <div class="bars" id="chartA" style="--d:1.2s"></div>
+  </div>
+
+  <div class="tw">
+    <table class="t">
+      <tr style="--d:1.2s"><th>Первый контакт, 2025</th><th>Доля обращений</th></tr>
+      <tr style="--d:1.3s"><td>Сайт или приложение</td><td class="v">31%<span class="meter" style="width:31%;--d:1.6s;margin-top:6px"></span></td></tr>
+      <tr class="hl" style="--d:1.4s"><td><b>Социальные сети</b></td><td class="v">28%<span class="meter" style="width:28%;--d:1.7s;margin-top:6px"></span></td></tr>
+      <tr style="--d:1.5s"><td>Телефонный звонок</td><td class="v">11%<span class="meter" style="width:11%;--d:1.8s;margin-top:6px"></span></td></tr>
+      <tr style="--d:1.6s"><td>Электронная почта</td><td class="v">10%<span class="meter" style="width:10%;--d:1.9s;margin-top:6px"></span></td></tr>
+      <tr style="--d:1.7s"><td>SMS и мессенджеры (текст)</td><td class="v">7%<span class="meter" style="width:7%;--d:2.0s;margin-top:6px"></span></td></tr>
+    </table>
+  </div>
+  <p class="take fade" style="--d:2.2s"><em>Вывод: гипотеза подтверждена.</em> За пять лет потери от «соцсетевых» схем выросли примерно в <em><span data-count="8" data-prefix="" data-suffix=" раз">8 раз</span></em>, и по сумме потерь это самый «дорогой» канал для людей до 80 лет.</p>
+
+  <p class="src">Источники: FTC Consumer Sentinel Network, Data Spotlight «Social media scams» (апрель 2026): потери по годам 0,26 / 0,79 / 1,2 / 1,5 / 1,9 / 2,1 млрд $; доли способов контакта среди обращений, где указана потеря.</p>
+  <div class="num">05</div>
+</section>
+
+<!-- ============ 6. АНАЛИЗ: причина 2 (круговая диаграмма + сложная таблица) ============ -->
+<section class="slide an a2" data-name="Анализ: причина 2">
+  <div class="bar-top"></div>
+  <div class="tag fade" style="--d:.7s">ПРИЧИНА 2 <span>из 10</span></div>
+  <h2 class="h2 rv" style="--d:.55s"><span>Жажда быстрого дохода: инвестиционные схемы</span></h2>
+  <div class="hyp fade" style="--d:1.0s"><b>Гипотеза</b>Обещание лёгких денег заставляет действовать до проверки, поэтому именно эти схемы приносят больше всего потерь.</div>
+
+  <div class="card fade" style="--d:.9s">
+    <div class="ct">Структура: на что пришлись потери от мошенничества в США, 2025</div>
+    <div class="donut" id="donutB">
+      <svg viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="80" stroke="#FFF4DC" opacity=".22"/>
+        <circle class="seg" cx="100" cy="100" r="80" stroke="#D63C1B" stroke-dasharray="250 600" style="--d:1.2s"/>
+      </svg>
+      <div class="mid"><b data-count="50" data-suffix="%">50%</b><span>всех потерь — инвестиционные схемы</span></div>
+    </div>
+    <ul class="dleg">
+      <li class="fade" style="--d:1.6s"><i style="background:var(--red)"></i><b>7,9</b>млрд $ — инвестиционные схемы</li>
+      <li class="fade" style="--d:1.8s"><i style="background:rgba(255,244,220,.4)"></i><b>8,0</b>млрд $ — все остальные виды (расчёт)</li>
+    </ul>
+    <p class="dnote">Всего зарегистрировано потерь на 15,9 млрд $. Реальная сумма выше: многие жертвы не сообщают о случившемся.</p>
+  </div>
+
+  <div class="tw">
+    <table class="t">
+      <tr style="--d:1.2s"><th>Показатель, млрд $</th><th>2024</th><th>2025</th><th>Рост</th></tr>
+      <tr style="--d:1.3s"><td>Все потери от мошенничества</td><td class="v">12,5</td><td class="v">15,9</td><td class="up">+27%</td></tr>
+      <tr class="hl" style="--d:1.4s"><td><b>Инвестиционные схемы</b></td><td class="v">5,7</td><td class="v">7,9</td><td class="up">+39%</td></tr>
+      <tr style="--d:1.5s"><td>Остальные виды (расчёт)</td><td class="v">6,8</td><td class="v">8,0</td><td class="up">+18%</td></tr>
+      <tr style="--d:1.6s"><td>Доля инвестиционных схем</td><td class="v">46%</td><td class="v">50%</td><td class="up">+4 п.п.</td></tr>
+      <tr style="--d:1.7s"><td>Только потери начавшиеся в соцсетях</td><td class="v">1,9</td><td class="v">2,1</td><td class="up">+11%</td></tr>
+    </table>
+  </div>
+  <p class="take fade" style="--d:2.2s"><em>Вывод: гипотеза подтверждена.</em> Инвестиционные схемы дают около половины всех потерь и растут быстрее остальных: ожидание большой прибыли отключает осторожность.</p>
+
+  <p class="src">Источники: FTC, пресс-релиз «New FTC data show a big jump in reported losses to fraud» (март 2025) и данные Consumer Sentinel за 2025 год. «Остальные виды» и проценты роста рассчитаны нами.</p>
+  <div class="num">06</div>
+</section>
+
+<!-- ============ 7. АНАЛИЗ: причина 3 (диаграмма сравнения + массив данных) ============ -->
+<section class="slide an a3" data-name="Анализ: причина 3">
+  <div class="bar-top"></div>
+  <div class="tag fade" style="--d:.7s">ПРИЧИНА 3 <span>из 10</span></div>
+  <h2 class="h2 rv" style="--d:.55s"><span>Осведомлённость отстаёт от новых схем</span></h2>
+  <div class="hyp fade" style="--d:1.0s"><b>Гипотеза</b>Схемы меняют каналы и сценарии быстрее, чем люди узнают о них. Универсальной «прививки» нет.</div>
+
+  <div class="card fade" style="--d:.9s">
+    <div class="ct">Сравнение: доля обращений о потерях, начавшихся в соцсетях, по возрасту</div>
+    <div class="unit">%</div>
+    <div class="bars" id="chartC" style="--d:1.2s"></div>
+  </div>
+
+  <div class="tw">
+    <table class="t">
+      <tr style="--d:1.2s"><th>Показатель</th><th>Значение</th><th>Источник</th></tr>
+      <tr style="--d:1.3s"><td>Потери людей 60+ (США)</td><td class="v">≈0,6 → ≈3 млрд $<small>2020 → 2025, примерно в 5 раз</small></td><td>FTC</td></tr>
+      <tr class="hl" style="--d:1.4s"><td>Потеряли от 100 тыс. $</td><td class="v">3% жертв = 69% потерь<small>немногие, но очень крупные случаи</small></td><td>FTC</td></tr>
+      <tr style="--d:1.5s"><td>Потери жителей КР от интернет-мошенничества</td><td class="v">826 млн сомов<small>возмещено менее 10%</small></td><td>МВД КР, 2025</td></tr>
+      <tr style="--d:1.6s"><td>Дела о кибермошенничестве в КР</td><td class="v">1 547 → 1 140<small>за 2025 год → за один I квартал 2026</small></td><td>МВД КР</td></tr>
+    </table>
+  </div>
+  <p class="take fade" style="--d:2.2s"><em>Вывод: гипотеза подтверждена.</em> Молодые чаще попадаются через соцсети, старшие через звонки: схема подстраивается под человека, а общих знаний мало. В МВД КР тоже отмечают, что низкая осведомлённость увеличивает число жертв.</p>
+
+  <p class="src">Источники: FTC (Data Spotlight 2026, отчёт об older adults 2025); 24.kg (МВД КР, потери 826 млн сомов в 2025); economist.kg (МВД КР, дела о кибермошенничестве). Объединённая таблица составлена нами.</p>
+  <div class="num">07</div>
+</section>
+
+<!-- ============ 8. Остальные причины 4–6 ============ -->
+<section class="slide ink dt d1" data-name="Причины 4–6">
+  <div class="head red fade" style="--d:.7s">ЕЩЁ 7 ПРИЧИН · ЧАСТЬ 1</div>
+  <h2 class="abs h rv title" style="--d:.55s" data-fit="1000"><span>Психология</span></h2>
+  <p class="part fade" style="--d:1s">Эти причины работают не на знания, а на эмоции. Поэтому предупреждения «знаю, но попался» так часто не спасают.</p>
+
+  <article class="col fade" style="left:56px;--d:1.1s">
+    <div class="n">04</div>
+    <h3>Эмоциональное давление</h3>
+    <p>Срочность, страх потерять деньги или радость «выигрыша» отключают критическое мышление. Человек действует быстрее, чем успевает проверить.</p>
+    <div class="why"><b>ПОЧЕМУ ЗАЩИТА НЕ РАБОТАЕТ</b>«Карта заблокирована, звоните сейчас»: на раздумья времени нет.</div>
+  </article>
+  <article class="col fade" style="left:520px;--d:1.35s">
+    <div class="n">05</div>
+    <h3>Доверие к «авторитету»</h3>
+    <p>Мошенники представляются банком, полицией, госорганами. Нам трудно не подчиниться «официальному» голосу и убедительной легенде.</p>
+    <div class="why"><b>ПОЧЕМУ ЗАЩИТА НЕ РАБОТАЕТ</b>Правило «банк не просит коды» забывается, когда звучит «сотрудник службы безопасности».</div>
+  </article>
+  <article class="col fade" style="left:984px;--d:1.6s">
+    <div class="n">06</div>
+    <h3>Иллюзия неуязвимости</h3>
+    <p>«Со мной такого не будет»: мы знаем схемы и считаем себя умнее мошенника. Частые предупреждения со временем надоедают и перестают замечаться.</p>
+    <div class="why"><b>ПОЧЕМУ ЗАЩИТА НЕ РАБОТАЕТ</b>Знание о схемах не включается, пока человек уверен, что угроза не про него.</div>
+  </article>
+  <div class="num">08</div>
+</section>
+
+<!-- ============ 9. Остальные причины 7–8 ============ -->
+<section class="slide cream dt d2" data-name="Причины 7–8">
+  <div class="head red fade" style="--d:.7s">ЕЩЁ 7 ПРИЧИН · ЧАСТЬ 2</div>
+  <h2 class="abs h rv title" style="--d:.55s" data-fit="1000"><span>Технологии</span></h2>
+  <p class="part fade" style="--d:1s">Мошенники используют ваши данные и новейшие инструменты. Старые «признаки обмана» перестают работать.</p>
+
+  <article class="col fade" style="left:56px;--d:1.1s">
+    <div class="n">07</div>
+    <h3>Утечки персональных данных</h3>
+    <p>Если звонящий знает ваше имя, банк и недавние покупки, ему верят. Данные из утечек превращают массовую рассылку в точечную атаку.</p>
+    <div class="why"><b>ПОЧЕМУ ЗАЩИТА НЕ РАБОТАЕТ</b>Совет «не верьте незнакомцам» не срабатывает, когда звонящий «всё про вас знает».</div>
+  </article>
+  <article class="col fade" style="left:660px;--d:1.4s">
+    <div class="n">08</div>
+    <h3>ИИ, дипфейки и поддельные сайты</h3>
+    <p>Поддельные голос и видео, грамотные тексты без ошибок, копии сайтов банков за считанные минуты. Привычные признаки обмана (опечатки, странный акцент) исчезают.</p>
+    <div class="why"><b>ПОЧЕМУ ЗАЩИТА НЕ РАБОТАЕТ</b>Памятки устаревают быстрее, чем их успевают обновлять и распространять.</div>
+  </article>
+  <div class="num">09</div>
+</section>
+
+<!-- ============ 10. Остальные причины 9–10 ============ -->
+<section class="slide redbg dt d3" data-name="Причины 9–10">
+  <div class="head fade" style="--d:.7s;color:var(--ink)">ЕЩЁ 7 ПРИЧИН · ЧАСТЬ 3</div>
+  <h2 class="abs h rv title" style="--d:.55s;color:var(--cream)" data-fit="1000"><span>Общество</span></h2>
+  <p class="part fade" style="--d:1s">Мошенничество растёт и там, где человеку не хватает близости, а у государства и банков нет быстрых механизмов возврата денег.</p>
+
+  <article class="col fade" style="left:56px;--d:1.1s">
+    <div class="n">09</div>
+    <h3>Одиночество и жажда внимания</h3>
+    <p>Романтические и «дружеские» схемы строятся на заботе и доверии, которых человеку не хватает. Жертва защищает «отношения», а не себя.</p>
+    <div class="why"><b>ФАКТ</b>Только США, 2025: 298 млн $ потерь от романтических афер, начавшихся в соцсетях (FTC).</div>
+  </article>
+  <article class="col fade" style="left:660px;--d:1.4s">
+    <div class="n">10</div>
+    <h3>Деньги почти не возвращают, схемы международные</h3>
+    <p>Деньги быстро уходят через цепочки переводов, а многие схемы работают из-за границы. Низкая вероятность наказания и возврата подталкивает мошенников действовать дальше.</p>
+    <div class="why"><b>ФАКТ</b>КР, 2025: потеряно 826 млн сомов, возмещено менее 10% (МВД КР, по данным 24.kg).</div>
+  </article>
+  <div class="num" style="color:var(--ink)">10</div>
+</section>
+
+<!-- ============ 11. ВЫВОД ============ -->
+<section class="slide cream s11" data-name="Вывод">
+  <h2 class="abs h rv" data-fit="720"><span>Вывод</span></h2>
+  <p class="txt fade" style="--d:1.0s"><b>Люди попадаются не потому, что «глупые».</b> Мошенничество бьёт по психологии, а не по знаниям. Схемы переезжают в соцсети быстрее, чем мы учимся их узнавать. Обещание лёгких денег и страх потери сбережений заставляют действовать до проверки. Пока осведомлённость отстаёт от технологий, а деньги почти не возвращаются, одних предупреждений недостаточно.</p>
+  <div class="artbox wipe gray" style="--d:.9s"><svg style="--k:.7"><use href="#coast" width="100%" height="100%"/></svg></div>
+  <div class="chips fade" style="--d:2s"><span>Доверие</span><span>Спешка</span><span>Жадность</span><span>Незнание</span></div>
+  <svg class="arrow" style="--d:1.6s"><use href="#arrow"/></svg>
+</section>
+
+<!-- ============ 12. ПУТИ РЕШЕНИЯ ============ -->
+<section class="slide cream s12" data-name="Пути решения">
+  <svg class="arrow ul" style="--d:1.2s"><use href="#arrow"/></svg>
+  <p class="lead fade" style="--d:1.0s">Защита работает, когда <b>личная привычка</b> подкреплена <b>системными мерами</b>: человек останавливается и проверяет, а банки и государство делают обман сложнее и дороже.</p>
+
+  <div class="pan p1 wipe up" style="--d:.8s">
+    <div class="artbox gray"><svg style="--k:.5"><use href="#ridge" width="100%" height="100%"/></svg></div>
+    <div class="shade"></div>
+    <div class="in">
+      <h3>Что делаю я</h3>
+      <ul>
+        <li class="fade" style="--d:1.5s"><b>Стоп, пауза.</b> Срочность — главный признак обмана.</li>
+        <li class="fade" style="--d:1.7s"><b>Проверяю сам:</b> перезваниваю в банк по номеру на карте.</li>
+        <li class="fade" style="--d:1.9s"><b>Никому не называю</b> коды из SMS и CVV.</li>
+        <li class="fade" style="--d:2.1s"><b>«Гарантированный доход»</b> = тревога, проверяю лицензию.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pan p2 wipe up" style="--d:1.0s">
+    <div class="artbox gray"><svg style="--k:-.5"><use href="#ridge" width="100%" height="100%"/></svg></div>
+    <div class="shade"></div>
+    <div class="in">
+      <h3>Что делает система</h3>
+      <ul>
+        <li class="fade" style="--d:1.7s"><b>Образование:</b> финансовая и цифровая грамотность для всех возрастов.</li>
+        <li class="fade" style="--d:1.9s"><b>Банки:</b> задержка подозрительных переводов, лимиты.</li>
+        <li class="fade" style="--d:2.1s"><b>Государство:</b> блокировка мошеннических номеров и сайтов, быстрый возврат.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="abs h rv" style="z-index:4"><span style="display:block">Пути</span><span style="display:block;--d:.75s">решения</span></h2>
+</section>
+
+<!-- ============ 13. СПАСИБО ЗА ВНИМАНИЕ ============ -->
+<section class="slide s13" data-name="Спасибо">
+  <div class="band">
+    <div class="artbox wipe gray" style="--d:.7s"><svg style="--k:.6"><use href="#spiral" width="100%" height="100%"/></svg></div>
+  </div>
+  <h2 class="abs h rv" data-fit="1400"><span>Спасибо за внимание</span></h2>
+  <div class="col l fade" style="--d:1.3s">
+    <b>ИСТОЧНИКИ</b>
+    <ul>
+      <li>FTC Consumer Sentinel Network: данные за 2024 и 2025 годы</li>
+      <li>FTC Data Spotlight «Social media scams», апрель 2026</li>
+      <li>МВД Кыргызстана, по материалам 24.kg и economist.kg</li>
+    </ul>
+  </div>
+  <div class="col r fade" style="--d:1.5s">
+    <b>ВОПРОСЫ?</b>
+    <ul>
+      <li>Группа 2-26: Абдывалиева Асема, Алымбекова Бегимай</li>
+      <li>Лектор: проф. Абдыров Т.Ш. · Практика: Кремнев Л.А.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<div class="ui" id="ui" aria-label="Навигация">
+  <button id="prev" aria-label="Назад">&larr;</button>
+  <span class="cnt" id="cnt">01 / 13</span>
+  <button id="next" aria-label="Вперёд">&rarr;</button>
+  <button id="fs" aria-label="Во весь экран">&#9974;</button>
+</div>
+<div class="hint" id="hint">Листайте стрелками ← → или пробелом, F — во весь экран</div>
+
+<script src="script.js"></script>
+</body>
+</html>

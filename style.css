@@ -1,0 +1,310 @@
+/* =====================================================
+   Презентация «Почему люди становятся жертвами мошенничества»
+   Палитра и шрифты взяты из шаблона Canva:
+   красно-оранжевый, почти чёрный, кремовый;
+   Bebas Neue (заголовки) + Roboto (текст)
+   ===================================================== */
+
+   :root{
+    --red:#D63C1B;
+    --red-dark:#a92b10;
+    --ink:#150909;
+    --cream:#FFF4DC;
+    --cream-2:#f1e0bb;
+    --head:"Bebas Neue","Oswald","Impact","Arial Narrow",sans-serif;
+    --body:"Roboto","Segoe UI",Arial,sans-serif;
+    --ease:cubic-bezier(.2,.8,.2,1);
+    --wipe:cubic-bezier(.7,0,.2,1);
+  }
+  
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#0a0505;overflow:hidden}
+  body{font-family:var(--body);color:var(--ink);-webkit-font-smoothing:antialiased}
+  ul,ol{list-style:none}
+  
+  /* ---------- сцена 1440×810, масштабируется скриптом ---------- */
+  .stage{
+    position:absolute;left:50%;top:50%;
+    width:1440px;height:810px;
+    transform-origin:center center;
+    background:var(--ink);
+    overflow:hidden;
+    --px:0px;--py:0px;
+  }
+  /* лёгкое зерно поверх всего — плёночная «дорогая» фактура */
+  .stage::after{
+    content:"";position:absolute;inset:0;z-index:50;pointer-events:none;opacity:.10;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    animation:grain 1.2s steps(6) infinite;
+  }
+  @keyframes grain{0%{background-position:0 0}20%{background-position:-40px 30px}40%{background-position:50px -20px}60%{background-position:-30px -50px}80%{background-position:20px 40px}100%{background-position:0 0}}
+  
+  /* ---------- слайды и смена слайдов ---------- */
+  .slide{position:absolute;inset:0;overflow:hidden;visibility:hidden}
+  .slide.leaving{visibility:visible;z-index:1}
+  .slide.active{visibility:visible;z-index:2;animation:inR 1s var(--wipe) both}
+  .slide.active[data-dir="-1"]{animation-name:inL}
+  @keyframes inR{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
+  @keyframes inL{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+  
+  .ink{background:var(--ink);color:var(--cream)}
+  .cream{background:var(--cream);color:var(--ink)}
+  .redbg{background:var(--red);color:var(--cream)}
+  .abs{position:absolute}
+  
+  /* ---------- типографика ---------- */
+  .h{font-family:var(--head);font-weight:700;line-height:.86;letter-spacing:.005em;text-transform:uppercase;white-space:nowrap;width:max-content;display:block}
+  .h2{font-family:var(--head);font-weight:700;line-height:.95;letter-spacing:.01em;text-transform:uppercase}
+  .red{color:var(--red)}
+  .cr{color:var(--cream)}
+  
+  /* построчное «выезжание» заголовков */
+  .rv{overflow:hidden;padding:.05em 0 .02em}
+  .rv>span{display:inline-block;transform:none}
+  .slide.active .rv>span{animation:rvUp 1.1s var(--d,.55s) var(--ease) both}
+  @keyframes rvUp{from{transform:translateY(112%) rotate(2deg)}to{transform:none}}
+  
+  /* появление */
+  .slide.active .fade{animation:fadeUp .9s var(--d,.8s) var(--ease) both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  /* линии выезжают */
+  .line{position:absolute;height:2px;background:currentColor;transform-origin:left center}
+  .slide.active .line{animation:drawX 1.3s var(--d,.9s) var(--wipe) both}
+  @keyframes drawX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  /* картинки открываются шторкой */
+  .wipe{overflow:hidden}
+  .slide.active .wipe{animation:wipeIn 1.4s var(--d,.8s) var(--wipe) both}
+  @keyframes wipeIn{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+  .wipe.up{}
+  .slide.active .wipe.up{animation-name:wipeUp}
+  @keyframes wipeUp{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+  
+  /* стрелки-иконки из шаблона */
+  .arrow{position:absolute;width:100px;height:100px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:square;overflow:visible}
+  .slide.active .arrow{animation:arrowDraw 1.1s var(--d,1.1s) var(--wipe) both}
+  @keyframes arrowDraw{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+  .arrow.ul{transform:rotate(-90deg)}
+  .arrow.dr{transform:rotate(90deg)}
+  .arrow.sm{width:34px;height:34px;stroke-width:3.6}
+  
+  /* ---------- графика (SVG-«фото») ---------- */
+  .artbox{position:absolute;overflow:hidden;background:#111}
+  .artbox svg{position:absolute;left:-4%;top:-4%;width:108%;height:108%;display:block;
+    transform:translate(calc(var(--px)*var(--k,1)),calc(var(--py)*var(--k,1)));transition:transform .5s var(--ease)}
+  .artbox svg *{vector-effect:none}
+  .spin{transform-origin:200px 200px;animation:spin 40s linear infinite}
+  .spin.rev{animation-direction:reverse;animation-duration:60s}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .breath{animation:breath 9s ease-in-out infinite;transform-origin:center}
+  @keyframes breath{50%{transform:scale(1.05)}}
+  .gray{filter:grayscale(1) contrast(1.05)}
+  
+  /* =====================================================
+     СЛАЙД 1 — ВОПРОС
+     ===================================================== */
+  .s1{background:var(--ink)}
+  .s1 .panel{position:absolute;left:0;top:38px;right:36px;bottom:0;background:var(--red);overflow:hidden}
+  .s1 .giant{left:62px;top:14px;font-size:360px;color:var(--cream)}
+  .s1 .q{position:absolute;right:80px;top:48px;width:410px;text-align:right;font-family:var(--head);font-size:25px;line-height:1.12;letter-spacing:.03em;text-transform:uppercase;color:var(--cream)}
+  .s1 .line{left:62px;right:62px;top:392px;color:var(--cream)}
+  .s1 .date{position:absolute;right:80px;top:410px;font-family:var(--head);font-size:30px;letter-spacing:.06em;color:var(--cream)}
+  .s1 .arrow{left:80px;top:440px;width:112px;height:112px;color:var(--cream)}
+  .s1 .who{position:absolute;left:830px;top:462px;width:540px;color:var(--cream);font-family:var(--head);font-size:25px;line-height:1.18;letter-spacing:.035em;text-transform:uppercase}
+  .s1 .who li{margin-bottom:12px}
+  .s1 .who b{display:block;font-weight:400;font-size:19px;letter-spacing:.14em;color:var(--ink);opacity:.9}
+  /* бегущие тонкие круги на заднем плане */
+  .s1 .ring{position:absolute;border:2px solid rgba(255,244,220,.16);border-radius:50%;animation:pulse 7s ease-in-out infinite}
+  @keyframes pulse{50%{transform:scale(1.12);opacity:.5}}
+  
+  /* =====================================================
+     СЛАЙД 2 — АКТУАЛЬНОСТЬ
+     ===================================================== */
+  .s2 .h{left:48px;top:16px;font-size:190px;color:var(--red)}
+  .s2 .line{left:48px;right:48px;top:262px;color:var(--ink)}
+  .s2 .sub{position:absolute;left:48px;top:286px;font-family:var(--head);font-weight:700;font-size:42px;letter-spacing:.02em;text-transform:uppercase}
+  .s2 .card{position:absolute;width:350px}
+  .s2 .card .n{font-family:var(--head);font-weight:700;font-size:44px;line-height:1}
+  .s2 .card h3{font-family:var(--head);font-weight:700;font-size:32px;line-height:1.05;letter-spacing:.02em;text-transform:uppercase;margin:6px 0 10px}
+  .s2 .card p{font-size:17.5px;line-height:1.45}
+  .s2 .card .arrow{right:0;top:2px;width:42px;height:42px;stroke-width:3.4}
+  .s2 .card::before{content:"";position:absolute;left:0;top:-14px;width:100%;height:3px;background:var(--red);transform-origin:left;transition:none}
+  .slide.active .s2 .card::before,.s2.active .card::before{animation:drawX 1s var(--d,1.3s) var(--wipe) both}
+  .s2 .c1{left:70px;top:520px}
+  .s2 .c2{left:520px;top:410px}
+  .s2 .c3{left:970px;top:300px}
+  .s2 .bigmark{position:absolute;right:48px;bottom:36px;font-family:var(--head);font-size:30px;letter-spacing:.1em;color:var(--red)}
+  
+  /* =====================================================
+     СЛАЙД 3 — ПРИЧИНЫ
+     ===================================================== */
+  .s3 .intro{position:absolute;left:60px;top:50px;width:490px;font-weight:700;font-size:20px;line-height:1.42}
+  .s3 .legend{position:absolute;left:60px;top:250px;font-size:15.5px;line-height:1.5;color:rgba(255,244,220,.8)}
+  .s3 .legend i{display:inline-block;width:14px;height:14px;margin-right:10px;vertical-align:-1px}
+  .s3 .causes{position:absolute;left:600px;top:46px;width:800px;columns:2;column-gap:36px}
+  .s3 .causes li{display:flex;gap:14px;margin-bottom:17px;font-size:17px;line-height:1.3;color:rgba(255,244,220,.72);break-inside:avoid}
+  .s3 .causes li b{flex:none;width:34px;font-family:var(--head);font-weight:700;font-size:30px;line-height:.95;color:rgba(255,244,220,.5)}
+  .s3 .causes li.main{color:var(--cream);font-weight:700}
+  .s3 .causes li.main b{color:var(--red)}
+  .s3 .strip{position:absolute;left:0;right:0;top:392px;height:176px;background:var(--red)}
+  .s3 .strip .artbox{left:40px;right:40px;top:20px;bottom:20px}
+  .s3 .h{left:36px;top:566px;font-size:250px;color:var(--cream)}
+  .s3 .arrow{right:56px;bottom:40px;width:112px;height:112px;color:var(--cream)}
+  
+  /* =====================================================
+     СЛАЙД 4 — АНАЛИЗ (разделитель)
+     ===================================================== */
+  .s4{background:var(--ink)}
+  .s4 .panel{position:absolute;left:0;top:0;right:40px;bottom:34px;background:var(--cream);overflow:hidden}
+  .s4 .artbox{left:70px;top:300px;width:540px;height:470px}
+  .s4 .h{left:700px;top:290px;font-size:270px;color:var(--red)}
+  .s4 .txt{position:absolute;left:706px;top:560px;width:600px;font-size:27px;line-height:1.38;font-weight:400}
+  .s4 .txt b{font-weight:700}
+  .s4 .arrow{right:70px;top:46px;width:120px;height:120px;color:var(--red)}
+  .s4 .ghost{position:absolute;left:58px;top:40px;font-family:var(--head);font-size:30px;letter-spacing:.12em;color:var(--ink)}
+  
+  /* =====================================================
+     СЛАЙДЫ 5–7 — АНАЛИЗ ПРИЧИН
+     ===================================================== */
+  .an{background:var(--cream)}
+  .an .bar-top{position:absolute;left:0;top:0;width:100%;height:12px;background:var(--red)}
+  .an .tag{position:absolute;left:56px;top:34px;font-family:var(--head);font-size:34px;letter-spacing:.08em;color:var(--red);font-weight:700}
+  .an .tag span{color:var(--ink)}
+  .an h2{position:absolute;left:56px;top:78px;width:960px;font-size:58px;line-height:.98;color:var(--ink)}
+  .an .hyp{position:absolute;right:56px;top:46px;width:340px;text-align:right;font-size:15.5px;line-height:1.45}
+  .an .hyp b{display:block;font-family:var(--head);font-size:24px;letter-spacing:.06em;color:var(--red);margin-bottom:4px;font-weight:700}
+  .an .card{position:absolute;left:56px;top:262px;width:610px;height:476px;background:var(--ink);color:var(--cream);padding:26px 30px 22px;overflow:hidden}
+  .an .card .ct{font-weight:700;font-size:15px;letter-spacing:.02em;line-height:1.35;color:var(--cream-2);max-width:480px}
+  .an .card .unit{position:absolute;right:30px;top:24px;font-family:var(--head);font-size:26px;color:var(--red);letter-spacing:.06em}
+  .an .tw{position:absolute;left:706px;top:262px;width:678px}
+  .an .take{position:absolute;left:706px;top:626px;width:678px;border-left:6px solid var(--red);padding:2px 0 2px 18px;font-size:18.5px;line-height:1.42;font-weight:700}
+  .an .take em{font-style:normal;color:var(--red)}
+  .an .src{position:absolute;left:56px;bottom:14px;font-size:12.5px;color:rgba(21,9,9,.62);width:1100px}
+  .an .num{position:absolute;right:56px;bottom:14px;font-family:var(--head);font-size:34px;color:var(--red)}
+  
+  /* таблицы */
+  table.t{width:100%;border-collapse:collapse;font-size:17px}
+  table.t th{font-family:var(--head);font-size:23px;letter-spacing:.06em;text-align:left;color:var(--red);padding:0 10px 8px 0;border-bottom:3px solid var(--ink);font-weight:700}
+  table.t td{padding:9px 10px 9px 0;border-bottom:1.5px solid rgba(21,9,9,.22);vertical-align:middle;line-height:1.3}
+  table.t td.v{font-weight:700;white-space:nowrap}
+  table.t td.up{font-weight:700;color:var(--red);white-space:nowrap}
+  table.t tr.hl td{background:rgba(214,60,27,.1)}
+  table.t .meter{display:block;height:9px;background:var(--red);transform-origin:left}
+  .slide.active table.t .meter{animation:drawX 1.2s var(--d,1.4s) var(--wipe) both}
+  table.t small{display:block;font-size:12.5px;color:rgba(21,9,9,.6);font-weight:400}
+  .slide.active table.t tr{animation:fadeUp .7s var(--d,1s) var(--ease) both}
+  
+  /* столбчатая диаграмма */
+  .bars{position:absolute;left:30px;right:30px;bottom:26px;top:96px;display:flex;align-items:flex-end;gap:14px}
+  .bars .b{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+  .bars .b i{display:block;width:100%;background:var(--cream);transform-origin:bottom}
+  .bars .b.hot i{background:var(--red)}
+  .bars .b .val{font-family:var(--head);font-size:30px;line-height:1;margin-bottom:6px;color:var(--cream)}
+  .bars .b .lab{font-size:15px;margin-top:9px;color:var(--cream-2);height:20px}
+  .slide.active .bars .b i{animation:grow 1.2s var(--d,1s) var(--wipe) both}
+  .slide.active .bars .b .val{animation:fadeUp .8s calc(var(--d,1s) + .5s) var(--ease) both}
+  @keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  
+  /* кольцевая диаграмма */
+  .donut{position:absolute;left:30px;top:84px;width:310px;height:310px}
+  .donut svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .donut circle{fill:none;stroke-width:34}
+  .slide.active .donut .seg{animation:ring 1.6s var(--d,1s) var(--wipe) both}
+  @keyframes ring{from{stroke-dasharray:0 600}}
+  .donut .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .donut .mid b{font-family:var(--head);font-size:86px;line-height:.9;color:var(--cream)}
+  .donut .mid span{font-size:13px;color:var(--cream-2);width:110px;line-height:1.25}
+  .dleg{position:absolute;left:372px;top:132px;width:216px;font-size:15.5px;line-height:1.35}
+  .dleg li{margin-bottom:20px}
+  .dleg i{display:block;width:34px;height:8px;margin-bottom:8px}
+  .dleg b{display:block;font-family:var(--head);font-size:44px;line-height:1;font-weight:700}
+  .dnote{position:absolute;left:30px;right:30px;bottom:20px;font-size:13.5px;line-height:1.4;color:var(--cream-2)}
+  
+  /* =====================================================
+     СЛАЙДЫ 8–10 — ОСТАЛЬНЫЕ ПРИЧИНЫ
+     ===================================================== */
+  .dt .head{position:absolute;left:56px;top:34px;font-family:var(--head);font-size:34px;letter-spacing:.08em;font-weight:700}
+  .dt .title{position:absolute;left:56px;top:74px;font-size:130px;line-height:.9}
+  .dt .part{position:absolute;right:56px;top:46px;width:360px;text-align:right;font-size:16px;line-height:1.45}
+  .dt .col{position:absolute;top:262px;width:400px;padding-top:20px}
+  .dt .col::before{content:"";position:absolute;left:0;top:0;width:100%;height:4px;background:currentColor;opacity:.9;transform-origin:left}
+  .slide.active.dt .col::before{animation:drawX 1s var(--d,1s) var(--wipe) both}
+  .dt .col .n{font-family:var(--head);font-weight:700;font-size:150px;line-height:.85;margin-bottom:10px}
+  .dt .col h3{font-family:var(--head);font-weight:700;font-size:40px;line-height:1;letter-spacing:.015em;text-transform:uppercase;margin-bottom:14px;min-height:80px}
+  .dt .col p{font-size:18px;line-height:1.5;margin-bottom:14px}
+  .dt .col .why{font-size:15.5px;line-height:1.45;padding:12px 14px;border-left:5px solid currentColor;background:rgba(127,127,127,.14)}
+  .dt .col .why b{display:block;font-family:var(--head);font-size:21px;letter-spacing:.07em;margin-bottom:2px}
+  .dt.ink .col .n{color:var(--red)}
+  .dt.cream .col .n{color:var(--red)}
+  .dt.redbg .col .n{color:var(--ink)}
+  .dt.redbg .why{background:rgba(21,9,9,.18)}
+  .dt.cream .title{color:var(--ink)}
+  .dt .src{position:absolute;left:56px;bottom:20px;font-size:12.5px;opacity:.7;width:1100px}
+  .dt .num{position:absolute;right:56px;bottom:12px;font-family:var(--head);font-size:34px}
+  .dt.d2 .col,.dt.d3 .col{width:560px}
+  .dt.d2 .col:nth-of-type(1),.dt.d3 .col:nth-of-type(1){left:56px}
+  
+  /* =====================================================
+     СЛАЙД 11 — ВЫВОД
+     ===================================================== */
+  .s11 .h{left:48px;top:6px;font-size:280px;color:var(--red)}
+  .s11 .txt{position:absolute;right:56px;top:40px;width:520px;text-align:right;font-size:19.5px;line-height:1.5}
+  .s11 .txt b{color:var(--red)}
+  .s11 .artbox{left:48px;right:48px;top:312px;bottom:48px}
+  .s11 .arrow{right:76px;bottom:70px;width:104px;height:104px;color:var(--red);transform:rotate(90deg)}
+  .s11 .chips{position:absolute;left:78px;bottom:76px;display:flex;gap:14px;z-index:3}
+  .s11 .chips span{background:var(--cream);color:var(--ink);padding:12px 18px;font-weight:700;font-size:17px}
+  .s11 .chips span:first-child{background:var(--red);color:var(--cream)}
+  
+  /* =====================================================
+     СЛАЙД 12 — ПУТИ РЕШЕНИЯ
+     ===================================================== */
+  .s12 .arrow{left:56px;top:50px;width:62px;height:62px;color:var(--red)}
+  .s12 .lead{position:absolute;left:56px;top:150px;width:600px;font-size:21px;line-height:1.5}
+  .s12 .lead b{color:var(--red)}
+  .s12 .h{left:48px;top:500px;font-size:132px;line-height:.86;color:var(--red);z-index:4;white-space:normal;width:auto}
+  .s12 .h span{display:block}
+  .s12 .pan{position:absolute;top:50px;bottom:50px;width:350px;overflow:hidden;background:var(--ink);color:var(--cream)}
+  .s12 .pan.p1{left:760px;width:330px}
+  .s12 .pan.p2{left:1106px;width:284px}
+  .s12 .pan .artbox{inset:0;left:0;top:0;width:100%;height:100%}
+  .s12 .pan .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(21,9,9,.96) 10%,rgba(21,9,9,.55) 55%,rgba(21,9,9,.1));z-index:2}
+  .s12 .pan .in{position:absolute;left:24px;right:20px;bottom:28px;z-index:3}
+  .s12 .pan h3{font-family:var(--head);font-weight:700;font-size:36px;line-height:.95;color:var(--red);margin-bottom:14px;text-transform:uppercase}
+  .s12 .pan li{font-size:15.5px;line-height:1.38;margin-bottom:11px;padding-left:20px;position:relative}
+  .s12 .pan li::before{content:"";position:absolute;left:0;top:7px;width:10px;height:3px;background:var(--red)}
+  .s12 .pan li b{color:var(--cream)}
+  
+  /* =====================================================
+     СЛАЙД 13 — СПАСИБО
+     ===================================================== */
+  .s13{background:var(--ink)}
+  .s13 .band{position:absolute;left:0;right:0;top:0;height:300px;background:var(--red)}
+  .s13 .band .artbox{left:40px;right:40px;top:22px;bottom:22px}
+  .s13 .band::before{content:"";position:absolute;left:0;top:0;width:50%;height:100%}
+  .s13 .h{left:20px;top:300px;font-size:230px;color:var(--cream)}
+  .s13 .col{position:absolute;top:610px;width:620px;font-size:16px;line-height:1.6;color:var(--cream)}
+  .s13 .col.l{left:60px}
+  .s13 .col.r{left:760px}
+  .s13 .col b{display:block;font-family:var(--head);font-size:26px;letter-spacing:.08em;color:var(--red);margin-bottom:4px}
+  .s13 .col li{margin-bottom:3px;color:rgba(255,244,220,.82)}
+  
+  /* =====================================================
+     Интерфейс: прогресс, кнопки, подсказки
+     ===================================================== */
+  .progress{position:fixed;left:0;top:0;height:4px;width:100%;z-index:100;background:rgba(255,244,220,.08)}
+  .progress i{display:block;height:100%;width:0;background:var(--red);transition:width .8s var(--wipe)}
+  .ui{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:6px;
+    background:rgba(21,9,9,.82);backdrop-filter:blur(8px);padding:6px 8px;border:1px solid rgba(255,244,220,.18);
+    transition:opacity .5s,transform .5s}
+  .ui.hide{opacity:0;transform:translate(-50%,16px);pointer-events:none}
+  .ui button{all:unset;cursor:pointer;color:var(--cream);width:38px;height:34px;display:grid;place-items:center;font-family:var(--head);font-size:22px;transition:background .25s,color .25s}
+  .ui button:hover,.ui button:focus-visible{background:var(--red)}
+  .ui button:focus-visible{outline:2px solid var(--cream)}
+  .ui .cnt{color:var(--cream);font-family:var(--head);font-size:22px;letter-spacing:.1em;padding:0 10px;min-width:92px;text-align:center}
+  .hint{position:fixed;left:50%;top:18px;transform:translateX(-50%);z-index:100;color:var(--cream);font-size:13px;background:rgba(21,9,9,.78);padding:7px 14px;
+    border:1px solid rgba(255,244,220,.18);transition:opacity .8s}
+  .hint.gone{opacity:0;pointer-events:none}
+  
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  }
